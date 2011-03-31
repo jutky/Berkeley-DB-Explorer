@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!--  Log4j Configuration -->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	debug="false">
+
+	<!--  Configure log appenders -->
+    <appender name="FILE" class="org.apache.log4j.FileAppender">
+        <param name="File" value="../results/crawler.log" />
+        <param name="Append" value="false" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p [%c{1}] %m%n" />
+        </layout>           
+     </appender>
+
+	<!-- A time/date based rolling appender -->
+
+	<!-- Append messages to the console -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss.SSS} %-5p [%c{1}] %m%n" />
+		</layout>
+	</appender>
+
+	<!--  Configure loggers (categories) -->
+	<!-- Filter out the appache logs -->
+	<category name="org.apache.commons">
+		<level value="WARN" />
+	</category>
+	<category name="httpclient.wire.content">
+		<level value="WARN" />
+	</category>
+	<category name="httpclient.wire.header">
+		<level value="WARN" />
+	</category>
+	<!--  End of appache logging definitions -->
+	
+
+	<category name="crawler.inet">
+		<level value="DEBUG" />
+	</category>
+	
+	<category name="crawler.inet.sources">
+		<level value="DEBUG" />
+	</category>
+
+	<category name="crawler.parser">
+		<level value="DEBUG" />
+	</category>
+	<!-- Setup the Root logger -->
+	<root>
+		<priority value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+
+</log4j:configuration>
